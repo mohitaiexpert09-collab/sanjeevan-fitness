@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sanjeevan Fitness — Elevate Your Fitness, Elevate Yourself</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Oswald:wght@400;500;600;700&family=Teko:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700;800;900&family=Barlow:wght@300;400;500&family=Saira:wght@300;400;500;600;700&family=Saira+Condensed:wght@500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --navy-deep:#0D1B3E;
+  --navy-mid:#162449;
+  --crimson:#C8102E;
+  --crimson-rgb:var(--crimson-rgb);
+  --db-rgb:var(--db-rgb);
+  --navy-rgb:var(--navy-rgb);
+  --bright-red:#E8152F;
+  --dark-base:#060D20;
+  --gold:#F0B429;
+  --white:#FFFFFF;
+  --off-white:#F4F4F0;
+  --slate:#8A8FA8;
+  --red-glow:rgba(var(--crimson-rgb),0.4);
+  --display:'Bebas Neue',sans-serif;
+  --cond:'Barlow Condensed',sans-serif;
+  --body:'Barlow',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--dark-base);
+  color:var(--white);
+  font-family:var(--body);
+  font-weight:300;
+  line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img,video{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+/* ---------- shared ---------- */
+.wrap{max-width:1280px;margin:0 auto;padding:0 6vw;}
+.eyebrow{
+  font-family:var(--cond);
+  font-weight:600;
+  font-size:0.8rem;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--crimson);
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+}
+.eyebrow.slate{color:var(--slate);}
+.eyebrow::before{content:"";width:34px;height:1px;background:currentColor;}
+.eyebrow.no-line::before{display:none;}
+.eyebrow.trail::after{content:"";width:34px;height:1px;background:currentColor;}
+.eyebrow.trail.no-line::before{display:none;}
+
+h2.section-title{
+  font-family:var(--display);
+  font-weight:400;
+  font-size:clamp(40px,5vw,72px);
+  line-height:0.95;
+  letter-spacing:var(--head-spacing,1px);
+  text-transform:uppercase;
+  margin-top:18px;
+}
+.crimson{color:var(--crimson);}
+.gold{color:var(--gold);}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  background:var(--crimson);
+  color:var(--white);
+  font-family:var(--cond);
+  font-weight:700;
+  font-size:0.95rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  padding:16px 34px;
+  border:none;
+  cursor:pointer;
+  clip-path:var(--btn-clip,polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%));
+  border-radius:var(--btn-radius,0);
+  transition:transform .25s ease,background .25s ease;
+}
+.btn:hover{background:var(--bright-red);transform:scale(1.04);}
+.btn.lg{font-size:1.15rem;padding:22px 52px;letter-spacing:4px;}
+
+.ghost-link{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  font-family:var(--cond);
+  font-weight:600;
+  font-size:0.95rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--off-white);
+  transition:color .25s ease;
+}
+.ghost-link .circ{
+  width:38px;height:38px;border-radius:50%;
+  border:1px solid rgba(var(--crimson-rgb),0.5);
+  display:grid;place-items:center;
+  transition:background .25s ease,border-color .25s ease,transform .25s ease;
+}
+.ghost-link:hover{color:var(--white);}
+.ghost-link:hover .circ{background:var(--crimson);border-color:var(--crimson);transform:translateX(4px);}
+
+.divider{
+  height:2px;width:100%;
+  background:linear-gradient(90deg,transparent,rgba(var(--crimson-rgb),0.4),transparent);
+}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+/* ---------- NAV ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(var(--db-rgb),0.85);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(var(--crimson-rgb),0.2);
+}
+.nav-inner{
+  max-width:1280px;margin:0 auto;padding:0 6vw;
+  height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.logo{
+  font-family:var(--display);font-size:1.7rem;letter-spacing:2px;color:var(--white);
+  white-space:nowrap;
+}
+.logo-mark{display:inline-flex;align-items:center;background:#fff;padding:7px 12px;border-radius:6px;line-height:0;}
+.logo-mark img{height:38px;width:auto;display:block;}
+.footer-mark{padding:9px 16px;border-radius:8px;}
+.footer-mark img{height:50px;}
+.nav-links{display:flex;gap:38px;}
+.nav-links a{
+  font-family:var(--cond);font-weight:600;font-size:0.9rem;letter-spacing:2px;
+  text-transform:uppercase;color:var(--off-white);position:relative;padding:6px 0;
+  transition:color .2s ease;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--crimson);
+  transition:width .25s ease;
+}
+.nav-links a:hover{color:var(--white);}
+.nav-links a:hover::after{width:100%;}
+.nav-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.6rem;cursor:pointer;}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:flex-end;
+  overflow:hidden;padding-bottom:7vh;
+}
+.hero-video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(160deg,rgba(var(--db-rgb),0.82) 0%,rgba(var(--navy-rgb),0.7) 45%,rgba(26,5,16,0.78) 100%),
+    radial-gradient(circle at 70% 50%,rgba(var(--crimson-rgb),0.32),transparent 55%),
+    radial-gradient(circle at 20% 85%,rgba(var(--navy-rgb),0.6),transparent 50%);
+}
+.hero-grid{
+  position:absolute;inset:0;z-index:2;
+  background-image:
+    linear-gradient(rgba(var(--crimson-rgb),0.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(var(--crimson-rgb),0.06) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:linear-gradient(180deg,transparent,#000 40%,#000 70%,transparent);
+}
+.hero-slash{
+  position:absolute;inset:0;z-index:2;
+  background:var(--crimson);opacity:0.12;
+  clip-path:polygon(100% 0,100% 38%,62% 0);
+}
+.hero-ghost{
+  position:absolute;right:2vw;top:50%;transform:translateY(-50%);z-index:2;
+  font-family:var(--display);font-size:32vw;line-height:0.8;color:transparent;
+  -webkit-text-stroke:2px rgba(244,244,240,0.05);
+  user-select:none;pointer-events:none;
+}
+.hero-content{position:relative;z-index:5;width:100%;}
+.hero-eyebrow{margin-bottom:24px;}
+.hero h1{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(64px,9vw,130px);line-height:0.92;letter-spacing:var(--head-spacing,2px);
+  text-transform:uppercase;
+}
+.hero h1 span{display:block;}
+.hero-sub{
+  margin-top:26px;max-width:480px;color:rgba(255,255,255,0.65);
+  font-size:clamp(1rem,1.6vw,1.2rem);line-height:1.8;
+}
+.hero-cta{margin-top:38px;display:flex;align-items:center;gap:34px;flex-wrap:wrap;}
+
+.hero-stats{
+  position:absolute;right:6vw;bottom:9vh;z-index:5;
+  display:flex;gap:0;
+}
+.stat{
+  padding:4px 26px;border-left:2px solid var(--crimson);
+}
+.stat .num{font-family:var(--display);font-size:2.6rem;line-height:1;color:var(--white);}
+.stat .lbl{font-family:var(--cond);font-weight:600;font-size:0.72rem;letter-spacing:2px;
+  text-transform:uppercase;color:var(--slate);margin-top:4px;}
+
+.scroll-hint{
+  position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:5;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  font-family:var(--cond);font-weight:600;font-size:0.7rem;letter-spacing:3px;color:var(--slate);
+}
+.scroll-hint .line{width:1px;height:46px;background:linear-gradient(180deg,var(--crimson),transparent);
+  animation:bounce 1.8s ease-in-out infinite;transform-origin:top;}
+@keyframes bounce{0%,100%{transform:scaleY(0.4);opacity:.4;}50%{transform:scaleY(1);opacity:1;}}
+
+/* hero stagger */
+.slide-up{opacity:0;transform:translateY(40px);animation:slideUp .9s cubic-bezier(.2,.7,.2,1) forwards;}
+@keyframes slideUp{to{opacity:1;transform:none;}}
+.d1{animation-delay:.1s;}.d2{animation-delay:.25s;}.d3{animation-delay:.4s;}
+.d4{animation-delay:.55s;}.d5{animation-delay:.7s;}.d6{animation-delay:.9s;}
+
+/* ---------- MARQUEE ---------- */
+.marquee{background:var(--crimson);height:48px;display:flex;align-items:center;overflow:hidden;white-space:nowrap;}
+.marquee-track{display:inline-flex;align-items:center;animation:marquee var(--marquee-dur,18s) linear infinite;}
+.marquee-track span{
+  font-family:var(--display);font-size:1rem;letter-spacing:4px;color:rgba(255,255,255,0.85);
+  padding:0 22px;text-transform:uppercase;
+}
+.marquee-track span.sep{color:rgba(255,255,255,0.45);}
+@keyframes marquee{to{transform:translateX(-50%);}}
+
+/* ---------- LOCATION STRIP ---------- */
+.locstrip{
+  background:rgba(var(--navy-rgb),0.9);
+  border-top:1px solid rgba(var(--crimson-rgb),0.1);
+  border-bottom:1px solid rgba(var(--crimson-rgb),0.1);
+}
+.locstrip-inner{
+  max-width:1280px;margin:0 auto;padding:20px 6vw;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+}
+.locstrip .addr{display:flex;align-items:center;gap:14px;font-size:0.95rem;color:var(--off-white);}
+.locstrip .addr .pin{color:var(--crimson);font-size:1.2rem;}
+.locstrip .open{display:flex;align-items:center;gap:16px;font-family:var(--cond);font-weight:600;
+  letter-spacing:1px;font-size:0.9rem;color:var(--slate);text-transform:uppercase;}
+.dot-live{width:9px;height:9px;border-radius:50%;background:#27d17c;box-shadow:0 0 10px #27d17c;display:inline-block;margin-right:8px;}
+.locstrip .open .now{color:#27d17c;}
+
+/* ---------- section base ---------- */
+section.block{position:relative;padding:120px 0;overflow:hidden;}
+.watermark{
+  position:absolute;font-family:var(--display);font-size:18vw;color:rgba(255,255,255,0.03);
+  letter-spacing:2px;user-select:none;pointer-events:none;z-index:0;line-height:1;
+}
+
+/* ---------- WHY ---------- */
+.why{background:var(--dark-base);}
+.why-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.why p{color:rgba(244,244,240,0.7);margin-top:22px;max-width:520px;}
+.feature-list{margin-top:40px;display:flex;flex-direction:column;gap:14px;}
+.feature{
+  display:flex;gap:18px;align-items:flex-start;
+  background:var(--navy-mid);border-left:3px solid var(--crimson);
+  padding:18px 22px;transition:transform .25s ease,background .25s ease;
+}
+.feature:hover{transform:translateX(6px);background:#1b2c57;}
+.feature .ico{font-size:1.6rem;line-height:1;flex-shrink:0;}
+.feature h4{font-family:var(--cond);font-weight:700;font-size:1.1rem;letter-spacing:0.5px;text-transform:uppercase;}
+.feature p{margin-top:2px;font-size:0.92rem;color:var(--slate);max-width:none;}
+
+.why-visual{
+  position:relative;aspect-ratio:4/5;
+  background:linear-gradient(150deg,var(--navy-mid),var(--dark-base));
+  border:1px solid rgba(var(--crimson-rgb),0.2);overflow:hidden;
+}
+.why-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+.why-scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(var(--db-rgb),0.25) 0%,rgba(var(--db-rgb),0.1) 40%,rgba(var(--db-rgb),0.85) 100%);}
+.why-badge{
+  position:absolute;top:22px;right:22px;z-index:3;background:var(--crimson);
+  font-family:var(--cond);font-weight:700;font-size:0.7rem;letter-spacing:3px;
+  text-transform:uppercase;padding:8px 14px;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.why-bigtext{
+  position:absolute;left:24px;bottom:24px;z-index:3;
+  font-family:var(--display);font-size:2.6rem;line-height:0.95;text-transform:uppercase;
+}
+.gold-badge{
+  position:absolute;right:-14px;bottom:-14px;z-index:4;background:var(--gold);color:#1a1205;
+  padding:14px 20px;text-align:center;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+  box-shadow:0 12px 30px rgba(0,0,0,0.4);
+}
+.gold-badge .r{font-family:var(--display);font-size:1.9rem;line-height:1;}
+.gold-badge .t{font-family:var(--cond);font-weight:700;font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;}
+
+/* ---------- SERVICES ---------- */
+.services{background:var(--navy-deep);}
+.services-head{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:54px;flex-wrap:wrap;}
+.svc-grid{position:relative;z-index:2;display:grid;grid-template-columns:var(--svc-cols,repeat(3,1fr));gap:2px;background:rgba(var(--crimson-rgb),0.15);border:1px solid rgba(var(--crimson-rgb),0.15);}
+.svc{
+  position:relative;background:var(--navy-deep);padding:44px 36px 48px;overflow:hidden;
+  border-top:3px solid transparent;transition:transform .3s ease,background .3s ease,border-color .3s ease;
+}
+.svc:hover{transform:translateY(-4px);background:#0a1531;border-top-color:var(--crimson);}
+.svc .num{
+  position:absolute;top:14px;right:22px;font-family:var(--display);font-size:3.4rem;
+  color:rgba(var(--crimson-rgb),0.15);transition:color .3s ease;line-height:1;
+}
+.svc:hover .num{color:rgba(var(--crimson-rgb),0.35);}
+.svc .ico{font-size:2rem;}
+.svc h3{font-family:var(--cond);font-weight:700;font-size:1.45rem;letter-spacing:0.5px;text-transform:uppercase;margin-top:20px;}
+.svc p{color:var(--slate);font-size:0.95rem;margin-top:12px;}
+
+/* ---------- REVIEWS ---------- */
+.reviews{background:var(--dark-base);text-align:center;}
+.reviews .center-head{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;}
+.rev-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px;text-align:left;}
+.rev{
+  position:relative;background:var(--navy-mid);padding:38px 32px 34px;overflow:hidden;
+  border-top:3px solid transparent;transition:transform .3s ease,border-color .3s ease;
+}
+.rev:hover{transform:translateY(-4px);border-top-color:var(--crimson);}
+.rev .quote{position:absolute;top:6px;right:22px;font-family:var(--display);font-size:6rem;color:rgba(var(--crimson-rgb),0.12);line-height:1;}
+.rev .stars{color:var(--gold);letter-spacing:3px;font-size:1.05rem;}
+.rev .txt{font-style:italic;color:rgba(255,255,255,0.75);margin-top:16px;font-size:1rem;line-height:1.7;}
+.rev .who{display:flex;align-items:center;gap:14px;margin-top:24px;}
+.rev .avatar{width:44px;height:44px;border-radius:50%;background:var(--crimson);display:grid;place-items:center;
+  font-family:var(--display);font-size:1.3rem;color:#fff;flex-shrink:0;}
+.rev .who .name{font-family:var(--cond);font-weight:700;font-size:1.05rem;letter-spacing:0.5px;}
+.rev .who .role{font-size:0.78rem;color:var(--slate);}
+
+/* ---------- CTA ---------- */
+.cta{
+  position:relative;text-align:center;background:var(--navy-deep);padding:130px 0;overflow:hidden;
+}
+.cta::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(var(--crimson-rgb),0.2),transparent 60%);}
+.cta-inner{position:relative;z-index:2;max-width:760px;margin:0 auto;display:flex;flex-direction:column;align-items:center;}
+.cta p.lead{color:rgba(244,244,240,0.7);margin-top:22px;max-width:520px;font-size:1.05rem;}
+.cta .btn{margin-top:40px;}
+.contact-row{margin-top:64px;display:flex;gap:48px;justify-content:center;flex-wrap:wrap;}
+.contact-item{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.contact-item .box{
+  width:60px;height:60px;border:1px solid rgba(var(--crimson-rgb),0.5);display:grid;place-items:center;font-size:1.5rem;
+  transition:background .25s ease,box-shadow .25s ease,transform .25s ease;
+}
+.contact-item:hover .box{background:var(--crimson);box-shadow:0 0 26px var(--red-glow);transform:translateY(-3px);}
+.contact-item .ci-label{font-family:var(--cond);font-weight:600;font-size:0.95rem;letter-spacing:1px;color:var(--off-white);text-align:center;}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--dark-base);border-top:1px solid rgba(var(--crimson-rgb),0.15);}
+.footer-inner{max-width:1280px;margin:0 auto;padding:40px 6vw;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+.footer-inner .tag{font-family:var(--cond);font-weight:600;font-size:0.72rem;letter-spacing:3px;color:var(--slate);text-transform:uppercase;margin-top:6px;}
+.footer-inner .copy{font-family:var(--cond);font-weight:500;font-size:0.85rem;letter-spacing:1px;color:var(--slate);text-transform:uppercase;}
+
+/* ---------- responsive ---------- */
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .why-grid{grid-template-columns:1fr;gap:48px;}
+  .svc-grid{grid-template-columns:1fr 1fr;}
+  .rev-grid{grid-template-columns:1fr;}
+  .hero-stats{position:static;margin-top:48px;flex-wrap:wrap;gap:8px 0;}
+  .hero{padding-bottom:5vh;}
+  .hero-ghost{font-size:46vw;}
+}
+@media(max-width:560px){
+  .svc-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:clamp(54px,16vw,90px);}
+  .locstrip-inner{flex-direction:column;align-items:flex-start;}
+  .contact-row{gap:32px;}
+}
+
+/* ===== tweak-driven ===== */
+.hero-darken{position:absolute;inset:0;z-index:1;background:#000;opacity:var(--hero-darken,0.12);pointer-events:none;}
+body.no-video .hero-video{display:none;}
+body.no-grid .hero-grid{display:none;}
+body.no-slash .hero-slash{display:none;}
+body.no-ghost .hero-ghost{display:none;}
+body.no-marquee .marquee{display:none;}
+body.no-watermark .watermark{display:none;}
+body.no-reveal .reveal{opacity:1 !important;transform:none !important;transition:none !important;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner" style="font-size: 6px">
+    <a href="#top" class="logo-mark"><img src="assets/logo-crop.png" alt="Sanjeevan Fitness" /></a>
+    <div class="nav-links">
+      <a href="#why">About</a>
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="btn">Join Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top" data-screen-label="Hero">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto">
+    <source src="assets/hero.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-darken"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-slash"></div>
+  <div class="hero-ghost">SF</div>
+
+  <div class="wrap hero-content">
+    <p class="eyebrow hero-eyebrow slide-up d1">Jabalpur's Premier Gym — Since Day One</p>
+    <h1>
+      <span class="slide-up d2" id="hl1">Elevate</span>
+      <span class="crimson slide-up d3" id="hl2">Your</span>
+      <span class="slide-up d4" id="hl3">Fitness</span>
+    </h1>
+    <p class="hero-sub slide-up d5">Stop waiting for Monday. Sanjeevan Fitness is where Jabalpur comes to transform — clean equipment, expert trainers, zero excuses.</p>
+    <div class="hero-cta slide-up d6">
+      <a href="#contact" class="btn">Start Today</a>
+      <a href="#services" class="ghost-link">Our Services
+        <span class="circ">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-stats slide-up d6">
+    <div class="stat"><div class="num">125+</div><div class="lbl">Google Reviews</div></div>
+    <div class="stat"><div class="num">4.5 <span class="gold">★</span></div><div class="lbl">Rating</div></div>
+    <div class="stat"><div class="num">3rd</div><div class="lbl">Floor, Gur Mehar Tower</div></div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <span class="line"></span>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee"></div>
+</div>
+
+<!-- LOCATION STRIP -->
+<div class="locstrip">
+  <div class="locstrip-inner">
+    <div class="addr">
+      <span class="pin">📍</span>
+      <span>3rd Floor, Gur Mehar Tower — Near Pathak Petrol Pump, Before Dmart, Bilhari, Jabalpur MP 482020</span>
+    </div>
+    <div class="open">
+      <span><span class="dot-live"></span><span class="now">Open Now</span></span>
+      <span>·</span>
+      <span>Closes 11 PM</span>
+      <span>·</span>
+      <span>Call: 099814 49921</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WHY -->
+<section class="block why" id="why" data-screen-label="Why Sanjeevan">
+  <span class="watermark" style="left:-2vw;top:30px;">#F</span>
+  <div class="wrap why-grid">
+    <div class="reveal">
+      <p class="eyebrow trail">Why Choose Us</p>
+      <h2 class="section-title">Not Just A Gym.<br />Your Transformation<br /><span class="crimson">HQ.</span></h2>
+      <p>Sanjeevan Fitness is built different. Forget crowded, dimly-lit boxes with broken equipment. We built a space where showing up feels good — and that's half the battle.</p>
+      <p>With certified trainers, modern machines, and a community that pushes you forward, we don't just help you work out — we help you level up.</p>
+      <div class="feature-list">
+        <div class="feature"><span class="ico">🏋️</span><div><h4>Premium Equipment</h4><p>Full weight training &amp; cardio zone with quality machines</p></div></div>
+        <div class="feature"><span class="ico">👨‍💼</span><div><h4>Expert Personal Trainers</h4><p>Certified coaches who actually care about your results</p></div></div>
+        <div class="feature"><span class="ico">✨</span><div><h4>Spotlessly Clean Space</h4><p>Maintained daily — because you deserve a clean environment</p></div></div>
+        <div class="feature"><span class="ico">🤝</span><div><h4>Supportive Community</h4><p>Owners &amp; trainers who know your name &amp; your goals</p></div></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="why-visual">
+        <img class="why-photo" src="assets/gym-floor.webp" alt="Sanjeevan Fitness gym floor — treadmills, turf zone and free weights" />
+        <div class="why-scrim"></div>
+        <span class="why-badge">Jabalpur's Best</span>
+        <div class="why-bigtext">Train Hard.<br /><span class="crimson">Live Better.</span></div>
+        <div class="gold-badge"><div class="r">4.5 ★</div><div class="t">125 Reviews</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section class="block services" id="services" data-screen-label="Services">
+  <span class="watermark" style="right:-4vw;bottom:0;">TRAIN</span>
+  <div class="wrap">
+    <div class="services-head">
+      <div class="reveal">
+        <p class="eyebrow trail">What We Offer</p>
+        <h2 class="section-title">Services That<br /><span class="crimson">Deliver Results</span></h2>
+      </div>
+      <a href="#contact" class="btn reveal">Get Started</a>
+    </div>
+    <div class="svc-grid reveal">
+      <div class="svc"><span class="num">01</span><div class="ico">💪</div><h3>Personal Training</h3><p>One-on-one sessions tailored to your fitness goals. Certified trainers build programs around you — not a template.</p></div>
+      <div class="svc"><span class="num">02</span><div class="ico">🏋️</div><h3>Weight Training</h3><p>Full free-weight area and machine zone. Build strength, add muscle, and master form with expert guidance on the floor.</p></div>
+      <div class="svc"><span class="num">03</span><div class="ico">🏃</div><h3>Cardio Zone</h3><p>Multiple treadmills, ellipticals, and bikes in a well-lit, spacious area. Burn calories without the wait.</p></div>
+      <div class="svc"><span class="num">04</span><div class="ico">🥊</div><h3>Functional Training</h3><p>Resistance bands, battle ropes, punching bag, and turf zone for athletic conditioning and fat loss circuits.</p></div>
+      <div class="svc"><span class="num">05</span><div class="ico">🥗</div><h3>Diet &amp; Nutrition</h3><p>Customized diet plans from our in-house nutrition advisors. Because abs are made in the kitchen too.</p></div>
+      <div class="svc"><span class="num">06</span><div class="ico">📈</div><h3>Progress Tracking</h3><p>Regular body assessments and fitness evaluations to keep you accountable and moving toward your goals.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REVIEWS -->
+<section class="block reviews" id="reviews" data-screen-label="Reviews">
+  <div class="wrap">
+    <div class="center-head reveal">
+      <p class="eyebrow no-line">What Members Say</p>
+      <h2 class="section-title">4.5 <span class="gold">★</span> On Google<br /><span class="crimson">125+ Reviews</span></h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev reveal"><span class="quote">"</span><div class="stars">★★★★★</div><p class="txt">"Great gym with a clean atmosphere and very supportive owners and trainers. Makes showing up and staying consistent a lot easier!"</p><div class="who"><span class="avatar">R</span><div><div class="name">Rahul S.</div><div class="role">Google Review · Verified Member</div></div></div></div>
+      <div class="rev reveal"><span class="quote">"</span><div class="stars">★★★★★</div><p class="txt">"Very clean and spacious gym. Good equipment and supportive staff. One of the best gyms in Jabalpur, no doubt."</p><div class="who"><span class="avatar">P</span><div><div class="name">Priya M.</div><div class="role">Google Review · Verified Member</div></div></div></div>
+      <div class="rev reveal"><span class="quote">"</span><div class="stars">★★★★★</div><p class="txt">"Amazing personal trainers and complete, clean gym. The trainers are knowledgeable and motivating. Would highly recommend!"</p><div class="who"><span class="avatar">A</span><div><div class="name">Arjun K.</div><div class="role">Google Review · Verified Member</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA / CONTACT -->
+<section class="cta" id="contact" data-screen-label="Contact">
+  <div class="wrap cta-inner reveal">
+    <p class="eyebrow no-line">Ready To Start?</p>
+    <h2 class="section-title">Your First Step<br /><span class="crimson">Starts Today</span></h2>
+    <p class="lead">Stop thinking about it. Walk in, talk to our team, and see why Jabalpur trusts Sanjeevan Fitness. First visit is on us.</p>
+    <a href="tel:09981449921" class="btn lg">Call To Join — 099814 49921</a>
+    <div class="contact-row">
+      <div class="contact-item"><span class="box">📞</span><span class="ci-label">099814 49921</span></div>
+      <div class="contact-item"><span class="box">📍</span><span class="ci-label">3rd Floor, Gur Mehar Tower,<br />Bilhari, Jabalpur</span></div>
+      <div class="contact-item"><span class="box">🕐</span><span class="ci-label">Open Daily<br />Closes 11 PM</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="logo-mark footer-mark"><img src="assets/logo-crop.png" alt="Sanjeevan Fitness" /></div>
+      <div class="tag">Elevate Your Fitness, Elevate Yourself</div>
+    </div>
+    <div class="copy">© 2025 Sanjeevan Fitness · Jabalpur, Madhya Pradesh</div>
+  </div>
+</footer>
+
+<script>
+// marquee content (duplicated for seamless loop)
+(function(){
+  var items=['Personal Training','Weight Training','Cardio Zone','Expert Coaches','Clean Facility','Results Guaranteed','Bilhari, Jabalpur'];
+  var track=document.getElementById('marquee');
+  function build(){
+    var frag='';
+    items.forEach(function(t){ frag+='<span>'+t+'</span><span class="sep">✦</span>'; });
+    return frag;
+  }
+  track.innerHTML=build()+build();
+})();
+
+// scroll reveal
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e);});
+})();
+</script>
+<div id="tweak-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks-app.jsx"></script>
+</body>
+</html>

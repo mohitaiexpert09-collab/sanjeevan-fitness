@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "created": "2026-05-30T14:28:16.760Z",
+  "modified": "2026-05-30T14:33:18.239Z",
+  "objects": [
+    {
+      "id": "h66neawoc",
+      "type": "rect",
+      "x": 140,
+      "y": 145.20000076293945,
+      "width": 909,
+      "height": 477,
+      "data": {
+        "fill": null,
+        "stroke": "#8B2500",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "vpxst305j",
+      "type": "rect",
+      "x": 170,
+      "y": 162.20000076293945,
+      "width": 874,
+      "height": 452,
+      "data": {
+        "fill": null,
+        "stroke": "#2D7DD2",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "1o0056k00",
+      "type": "text",
+      "x": 741,
+      "y": 342.20000076293945,
+      "data": {
+        "content": "Heroic Background Video",
+        "fontSize": 16,
+        "color": "#3D7C2F",
+        "bold": false
+      },
+      "width": 148,
+      "height": 42
+    },
+    {
+      "id": "pl6innx25",
+      "type": "rect",
+      "x": 202,
+      "y": 279.20000076293945,
+      "width": 275,
+      "height": 304,
+      "data": {
+        "fill": null,
+        "stroke": "#3D7C2F",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "j2wrq5wmv",
+      "type": "text",
+      "x": 221,
+      "y": 302.20000076293945,
+      "data": {
+        "content": "Heroic Text",
+        "fontSize": 16,
+        "color": "#3D7C2F",
+        "bold": false
+      },
+      "width": 79,
+      "height": 21
+    },
+    {
+      "id": "dow6j1awf",
+      "type": "rect",
+      "x": 196,
+      "y": 174.20000076293945,
+      "width": 804,
+      "height": 55,
+      "data": {
+        "fill": null,
+        "stroke": "#000000",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "oshibewln",
+      "type": "text",
+      "x": 223,
+      "y": 192.20000076293945,
+      "data": {
+        "content": "Logo",
+        "fontSize": 16,
+        "color": "#000000",
+        "bold": false
+      },
+      "width": 36,
+      "height": 21
+    },
+    {
+      "id": "j0zhxpyjo",
+      "type": "text",
+      "x": 644,
+      "y": 190.20000076293945,
+      "data": {
+        "content": "And all the related sections of the website",
+        "fontSize": 16,
+        "color": "#2D7DD2",
+        "bold": false
+      },
+      "width": 310,
+      "height": 21
+    },
+    {
+      "id": "u08ypnwgp",
+      "type": "text",
+      "x": 264,
+      "y": 474.20000076293945,
+      "data": {
+        "content": "Heroic Subtext",
+        "fontSize": 16,
+        "color": "#2D7DD2",
+        "bold": false
+      },
+      "width": 104,
+      "height": 21
+    }
+  ]
+}
